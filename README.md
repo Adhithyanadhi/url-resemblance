@@ -6,26 +6,21 @@ Features
 
 ## Requirements
 
-Requires Python3. 
+Requires Python3.
+
+VSC version ^1.22.2.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+No special settings required.
 
 ## Known Issues
 
-Support only standard Go Directory structure.
+Supports only HTTP Go routes, with file routes file name as **routes.go**.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+Initial version with basic functionality to highlight duplicate routes upon saving routes.go file.
 
 ### 1.0.0
 
@@ -33,8 +28,6 @@ Initial release of URL Resemblance.
 
 ## For more information
 
-* [Visual Studio Code&#39;s Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+* [GitHub](https://github.com/Adhithyanadhi/url-resemblance)
 
 **Enjoy!**
-# url-resemblance
