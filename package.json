@@ -1,0 +1,37 @@
+{
+  "publisher": "AmbitiousCoder",
+  "name": "url-resemblance",
+  "displayName": "URL Resemblance",
+  "description": "finds url resemblance in GoLang",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.22.2"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:go"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "url-resemblance.url_resemblance",
+      "title": "URL Resemblance"
+    }]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.22.2",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}
