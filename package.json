@@ -3,7 +3,7 @@
   "name": "url-resemblance",
   "displayName": "URL Resemblance",
   "description": "finds url resemblance in GoLang",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.22.2"
   },
@@ -15,10 +15,12 @@
   ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "url-resemblance.url_resemblance",
-      "title": "URL Resemblance"
-    }]
+    "commands": [
+      {
+        "command": "url-resemblance.url_resemblance",
+        "title": "URL Resemblance"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
