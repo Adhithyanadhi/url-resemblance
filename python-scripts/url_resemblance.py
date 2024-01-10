@@ -94,9 +94,20 @@ def get_matching_routes(r: Route) -> bool:
 
 def form_route(line_num: int, route, type):
     route_info: List[str] = route.split(',')
-    method, url_path = get_method(route_info[1].replace('"', '').replace('\'', '')), route_info[2].replace('"', '').replace('\'', '')
+    method_data, path_data = "", ""
+    for i in range(len(route_info)):
+        route_info[i] = route_info[i].strip()
+        if "http." in route_info[i] or '"GET"' in route_info[i] or '"POST"' in route_info[i] or '"PUT"' in route_info[i] or '"PATCH"' in route_info[i] or '"DELETE"' in route_info[i]:
+            method_data = route_info[i]
+            path_data = route_info[i+1]
+            break
+    
+    if method_data == "" or path_data == "":
+        raise Exception(f"method name - {method_data} or path name {path_data} not found in route {route}")
+    
+    method, url_path = get_method(method_data.replace('"', '').replace('\'', '')), path_data.replace('"', '').replace('\'', '')
     if method == None:
-        pass
+        raise Exception(f"Method not found: {route}")
     path_variables = []
     url_path_variables = url_path.split('/')
     for path_variable in url_path_variables:
@@ -116,22 +127,25 @@ def main():
         for i in range(len(routes_file_contents)):
             route = routes_file_contents[i].strip()
             if route.startswith("server."):
-                if "constants.PublicURLSlug" in route:
-                    r = form_route(i, route, "public")
-                    routes.append(r)
-                    ROUTES_MAP["public"][r.method].append(r)
-                elif "constants.PrivateURLSlug" in route:
-                    r = form_route(i, route, "private")
-                    routes.append(r)
-                    ROUTES_MAP["private"][r.method].append(r)
-                elif "constants.ApiURLSlug" in route:
-                    r = form_route(i, route, "api")
-                    routes.append(r)
-                    ROUTES_MAP["api"][r.method].append(r)
-                elif "/ping" in route or "server.Start" in route:
-                    continue
-                else:
-                    raise Exception(f"unhanlded: route: {route}")
+                try:
+                    if "constants.PublicURLSlug" in route:
+                        r = form_route(i, route, "public")
+                        routes.append(r)
+                        ROUTES_MAP["public"][r.method].append(r)
+                    elif "constants.PrivateURLSlug" in route:
+                        r = form_route(i, route, "private")
+                        routes.append(r)
+                        ROUTES_MAP["private"][r.method].append(r)
+                    elif "constants.ApiURLSlug" in route:
+                        r = form_route(i, route, "api")
+                        routes.append(r)
+                        ROUTES_MAP["api"][r.method].append(r)
+                    elif "/ping" in route or "server.Start" in route:
+                        continue
+                    else:
+                        raise Exception(f"unhanlded: route: {route}")
+                except Exception as e:
+                    print(f"Exception occurred {str(e)}")
         
         for i in range(len(routes)):
             route = routes[i]
