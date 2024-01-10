@@ -3,7 +3,7 @@
   "name": "url-resemblance",
   "displayName": "URL Resemblance",
   "description": "finds url resemblance in GoLang",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.22.2"
   },
