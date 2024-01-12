@@ -52,9 +52,7 @@ function regexMatchAll(regex, str) {
 
 function run_validate(context) {
 	const execSync = require("child_process").execSync; 
-
 	var output = execSync('python3 ' + '"' + context.extensionUri.path + '/python-scripts/url_resemblance.py' + '" ' + '"'  +  vscode.window.activeTextEditor.document.uri.path + '"').toString().trim() ;
-	console.log("data caputred in js file ", output)
 	if (output == "exited"){
 		return []
 	}else{
@@ -92,7 +90,7 @@ function activate(context) {
 	});
 
 	context.subscriptions.push(disposable);
-	// vscode.commands.executeCommand("url-resemblance.url_resemblance");
+	vscode.commands.executeCommand("url-resemblance.url_resemblance");
 }
 
 // This method is called when your extension is deactivated
